@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YingMusic-SVC — 歌声音色转换演示</title>
+  <meta name="description" content="YingMusic-SVC 将任意干声转换为目标音色，同时保留旋律、歌词和情感表达。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Rubik', 'sans-serif'],
+            body: ['Nunito Sans', 'sans-serif'],
+          },
+          colors: {
+            bg: '#0F0F23',
+            'bg-card': '#1A1A3E',
+            primary: '#1E1B4B',
+            accent: '#F97316',
+            'text-primary': '#F8FAFC',
+            'text-muted': '#94A3B8',
+            'source': '#3B82F6',
+            'reference': '#8B5CF6',
+            'converted': '#F97316',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-body bg-bg text-text-primary min-h-screen antialiased">
+
+  <!-- Hero -->
+  <header class="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-3xl mx-auto">
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent/20 text-accent mb-6">
+        歌声转换
+      </span>
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+        YingMusic<span class="text-accent">-SVC</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-text-muted leading-relaxed">
+        音色替换演示
+      </p>
+      <p class="mt-4 text-text-muted max-w-xl mx-auto leading-relaxed">
+        试听 YingMusic-SVC 如何将原始干声替换为目标音色——
+        保留旋律、歌词、节奏和情感表达，仅改变声音身份。
+      </p>
+    </div>
+  </header>
+
+  <!-- Legend / How to use -->
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+    <div class="flex flex-wrap justify-center gap-4 text-sm">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-source"></span>
+        <span class="text-text-muted">原始干声</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-reference"></span>
+        <span class="text-text-muted">参考音色</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-converted"></span>
+        <span class="text-text-muted">转换结果</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Rows -->
+  <main id="groups-container" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-16">
+    <!-- Rendered by app.js -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-8 text-center text-sm text-text-muted">
+    <p>YingMusic-SVC &copy; 2026. 音频样本仅供演示用途。</p>
+  </footer>
+
+  <!-- WaveSurfer.js import map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "wavesurfer.js": "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js"
+    }
+  }
+  </script>
+
+  <!-- App logic -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

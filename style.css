@@ -1,0 +1,258 @@
+/* ===== Base ===== */
+body {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ===== Group Section ===== */
+.group-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.group-section:nth-child(1) { animation-delay: 0.1s; }
+.group-section:nth-child(2) { animation-delay: 0.2s; }
+.group-section:nth-child(3) { animation-delay: 0.3s; }
+.group-section:nth-child(4) { animation-delay: 0.4s; }
+
+.group-title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #F8FAFC;
+  margin-bottom: 1rem;
+  padding-left: 0.25rem;
+}
+
+/* ===== Comparison Grid ===== */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* ===== Player Card ===== */
+.player-card {
+  background: rgba(26, 26, 62, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.player-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.player-card.playing {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+}
+
+.player-card.source.playing { border-color: rgba(59, 130, 246, 0.5); }
+.player-card.reference.playing { border-color: rgba(139, 92, 246, 0.5); }
+.player-card.converted.playing { border-color: rgba(249, 115, 22, 0.5); }
+
+/* ===== Card Header ===== */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Rubik', sans-serif;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.card-badge.source {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60A5FA;
+}
+
+.card-badge.reference {
+  background: rgba(139, 92, 246, 0.15);
+  color: #A78BFA;
+}
+
+.card-badge.converted {
+  background: rgba(249, 115, 22, 0.15);
+  color: #FB923C;
+}
+
+/* ===== Waveform ===== */
+.waveform-container {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.25);
+  contain: layout style;
+}
+
+.waveform-container > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* WaveSurfer waveform colors are set via JS — these are fallback overrides */
+.waveform-container wave {
+  overflow: hidden !important;
+}
+
+/* Loading state */
+.waveform-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  color: #64748B;
+  font-size: 0.8rem;
+}
+
+.waveform-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  color: #EF4444;
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* ===== Controls ===== */
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.play-btn {
+  flex-shrink: 0;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 150ms ease;
+  background: rgba(255, 255, 255, 0.08);
+  color: #F8FAFC;
+}
+
+.play-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.play-btn:active {
+  transform: scale(0.95);
+}
+
+.play-btn:focus-visible {
+  outline: 2px solid #F97316;
+  outline-offset: 2px;
+}
+
+.play-btn svg {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.play-btn .pause-icon { display: none; }
+.player-card.playing .play-btn .play-icon { display: none; }
+.player-card.playing .play-btn .pause-icon { display: block; }
+
+.time-display {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  font-variant-numeric: tabular-nums;
+  width: 56px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1023px) {
+  .comparison-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .player-card {
+    padding: 1rem;
+  }
+
+  .waveform-container {
+    height: 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .player-card {
+    padding: 1rem;
+  }
+
+  .waveform-container {
+    height: 72px;
+  }
+
+  .group-section {
+    margin-bottom: 0;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .group-section {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .play-btn {
+    transition: none;
+  }
+
+  .player-card {
+    transition: none;
+  }
+}
